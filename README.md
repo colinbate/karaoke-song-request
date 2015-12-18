@@ -6,6 +6,7 @@ Attempt to create the [karaoke song request assignment][0] with a new stack. My 
 * [react-router](https://github.com/rackt/react-router)
 * [Redux](http://redux.js.org/)
 * [react-redux](https://github.com/rackt/react-redux)
+* [redux-simple-router](https://github.com/jlongster/redux-simple-router)
 * [xr](https://github.com/radiosilence/xr)
 * [Auth0](https://auth0.com)
 * [Hook.io](http://hook.io)
