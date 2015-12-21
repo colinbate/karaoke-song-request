@@ -8,7 +8,7 @@ export default function configureStore(initialState) {
 /*
 {
   requests: [{title, artist}, ...],
-  errorMessage: ''m
+  errorMessage: '',
   form: {redux-form}
 }
 */

@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
       if (action.type === Actions.ADD_REQUEST) {
         return {
           ...state,
-          title: {},
+          title: {focus:true},
           artist: {}
         };
       }
