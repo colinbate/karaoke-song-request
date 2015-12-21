@@ -1,14 +1,23 @@
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
+export const ADD_REQUEST = 'ADD_REQUEST';
+export const ADD_REQUESTS = 'ADD_REQUESTS';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
-export function increment() {
+export function addRequest(request) {
 	return {
-		type: INCREMENT
+		request,
+		type: ADD_REQUEST
 	};
 }
 
-export function decrement() {
+export function addRequests(requests) {
 	return {
-		type: DECREMENT
+		requests,
+		type: ADD_REQUESTS
+	};
+}
+
+export function clearError() {
+	return {
+		type: CLEAR_ERROR
 	};
 }

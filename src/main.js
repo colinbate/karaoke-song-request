@@ -1,5 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+//import 'babel-core/polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import Root from './containers/Root'
+import configureStore from './store'
 
-ReactDOM.render(<App />, document.getElementById('app'))
+const store = configureStore()
+
+render(
+  <Root store={store} />,
+  document.getElementById('app')
+)

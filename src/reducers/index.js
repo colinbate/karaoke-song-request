@@ -1,19 +1,37 @@
 import { combineReducers } from 'redux';
+import {reducer as formReducer} from 'redux-form';
 import * as Actions from '../actions';
 
-function counter(state = 0, action) {
+function requests(state = [], action) {
   switch (action.type) {
-    case Actions.INCREMENT:
-      return state + 1;
-    case Actions.DECREMENT:
-      return state - 1;
+    case Actions.ADD_REQUEST:
+      return [...state, action.request];
     default:
       return state;
   }
 }
 
+function errorMessage(state = '', action) {
+  if (action.type === Actions.CLEAR_ERROR) {
+    return '';
+  }
+  if (action.error) {
+    return '' + action.error;
+  }
+  return state;
+}
+
 const rootReducer = combineReducers({
-  counter
+  requests,
+  errorMessage,
+  form: formReducer.plugin({
+    requestForm(state, action) {
+      if (action.type === Actions.ADD_REQUEST) {
+        return void 0;
+      }
+      return state;
+    }
+  })
 });
 
 export default rootReducer;
