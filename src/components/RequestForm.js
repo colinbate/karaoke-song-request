@@ -15,10 +15,10 @@ const RequestForm = ({
     resetForm,
     submitting}) => (
   <form onSubmit={handleSubmit}>
-    <TextInput id="title" label="Song Title" {...title} />
-    <TextInput id="artist" label="Song Artist" {...artist} />
     <TextInput id="name" label="Your Name" {...name} />
     <TextInput id="email" label="Your Email" {...email} />
+    <TextInput id="title" label="Song Title" {...title} />
+    <TextInput id="artist" label="Song Artist" {...artist} />
     <Button onClick={handleSubmit}>Submit</Button>
   </form>
 );

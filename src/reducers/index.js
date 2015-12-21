@@ -27,7 +27,11 @@ const rootReducer = combineReducers({
   form: formReducer.plugin({
     requestForm(state, action) {
       if (action.type === Actions.ADD_REQUEST) {
-        return void 0;
+        return {
+          ...state,
+          title: {},
+          artist: {}
+        };
       }
       return state;
     }
