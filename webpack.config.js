@@ -9,10 +9,13 @@ module.exports = {
 		port: 3333,
 		contentBase: './src'
 	},
+    resolve: {
+        extensions: ['', '.ts', '.tsx', '.js', '.jsx']
+    },
 	module: {
 		loaders: [
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				exclude: /node_modules/,
 				loader: 'babel',
 				query: {
