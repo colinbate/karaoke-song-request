@@ -14,11 +14,11 @@ export default class App extends Component {
           <Header>Requested Songs</Header>
           <main className="mdl-layout__content">
             <div className="page-content">
-              <div className="mdl-grid">
-                <div className="mdl-cell mdl-cell--6-col">
+              <div className="mdl-grid" id="main-container">
+                <div className="mdl-cell mdl-cell--8-col">
                   <Requests />
                 </div>
-                <div className="mdl-cell mdl-cell--6-col">
+                <div className="mdl-cell mdl-cell--4-col">
                   <RequestForm />
                   <Example />
                 </div>

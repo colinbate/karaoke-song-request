@@ -16,13 +16,22 @@ class RequestForm extends Component {
       resetForm,
       submitting} = this.props;
     return (
-      <form onSubmit={handleSubmit(::this.onSubmit)}>
-        <TextInput id="name" label="Your Name" {...name} />
-        <TextInput id="email" label="Your Email" {...email} />
-        <TextInput id="title" label="Song Title" {...title} ref={(ref) => this.titleField = ref} />
-        <TextInput id="artist" label="Song Artist" {...artist} />
-        <Button onClick={handleSubmit(::this.onSubmit)}>Submit</Button>
-      </form>
+      <div className="mdl-card mdl-shadow--2dp form-card">
+        <div className="mdl-card__title mdl-color--accent mdl-color-text--accent-contrast">
+          <h2 className="mdl-card__title-text">Add New Song Request</h2>
+        </div>
+        <form onSubmit={handleSubmit(::this.onSubmit)}>
+          <div className="mdl-card__supporting-text">
+            <TextInput id="name" label="Your Name" {...name} />
+            <TextInput id="email" label="Your Email" {...email} />
+            <TextInput id="title" label="Song Title" {...title} ref={(ref) => this.titleField = ref} />
+            <TextInput id="artist" label="Song Artist" {...artist} />
+          </div>
+          <div className="mdl-card__actions">
+            <Button onClick={handleSubmit(::this.onSubmit)}>Submit</Button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

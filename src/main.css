@@ -5,3 +5,7 @@ main > .page-content {
 .ksr-full-table {
 	width: 100%;
 }
+
+#main-container {
+  max-width: 960px;
+}
