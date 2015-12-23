@@ -10,7 +10,7 @@ const SongList = ({requests }) => (
       </tr>
     </thead>
     <tbody>
-      {requests.map(request => <Song request={request}/>)}
+      {requests.map(request => <Song key={request.key} request={request}/>)}
     </tbody>
   </table>
 );

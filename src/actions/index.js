@@ -9,9 +9,9 @@ export function addRequest(request) {
 	};
 }
 
-export function addRequests(requests) {
+export function fetchRequests(api) {
 	return {
-		requests,
+		promise: api.get(),
 		type: ADD_REQUESTS
 	};
 }

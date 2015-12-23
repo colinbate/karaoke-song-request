@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
 	entry: './src/main.js',
 	output: {
@@ -10,7 +12,10 @@ module.exports = {
 		contentBase: './src'
 	},
     resolve: {
-        extensions: ['', '.ts', '.tsx', '.js', '.jsx']
+        extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
+        alias: {
+          setup$: './setup.js'
+        }
     },
 	module: {
 		loaders: [
@@ -23,6 +28,11 @@ module.exports = {
 					plugins: ['transform-object-rest-spread', 'transform-function-bind']
 				}
 			}
-		]
+		],
+    plugins: [
+      new webpack.ProvidePlugin({
+        'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      })
+    ]
 	}
 };

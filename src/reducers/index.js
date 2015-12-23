@@ -6,6 +6,10 @@ function requests(state = [], action) {
   switch (action.type) {
     case Actions.ADD_REQUEST:
       return [...state, action.request];
+    case Actions.ADD_REQUESTS:
+      if (action.ready) {
+        return [...state, ...action.result];
+      }
     default:
       return state;
   }
