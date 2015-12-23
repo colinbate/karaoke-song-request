@@ -1,8 +1,12 @@
+import shortid from 'shortid';
+
 export const ADD_REQUEST = 'ADD_REQUEST';
 export const ADD_REQUESTS = 'ADD_REQUESTS';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export function addRequest(request) {
+  request.key = shortid.generate();
+  request.when = new Date();
 	return {
 		request,
 		type: ADD_REQUEST
