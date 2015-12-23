@@ -10,10 +10,10 @@ export default class SongListApi {
   }
   
   add(request) {
-    return this.fetch.post(urlAddSong, request);
+    return this.fetch.post(urlAddSong, {payload: request});
   }
   
   remove(...ids) {
-    return this.fetch.post(urlRemoveSongs, ids);
+    return this.fetch.post(urlRemoveSongs, {payload: ids});
   }
 }

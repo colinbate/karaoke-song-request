@@ -12,10 +12,8 @@ module.exports = {
 		contentBase: './src'
 	},
     resolve: {
-        extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
-        alias: {
-          setup$: './setup.js'
-        }
+        extensions: ['', '.ts', '.tsx', '.js', '.jsx']
+        
     },
 	module: {
 		loaders: [

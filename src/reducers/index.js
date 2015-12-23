@@ -5,7 +5,10 @@ import * as Actions from '../actions';
 function requests(state = [], action) {
   switch (action.type) {
     case Actions.ADD_REQUEST:
-      return [...state, action.request];
+      if (!action.ready) {
+        return [...state, action.request];
+      }
+      break;
     case Actions.ADD_REQUESTS:
       if (action.ready) {
         return [...state, ...action.result];
@@ -13,6 +16,7 @@ function requests(state = [], action) {
     default:
       return state;
   }
+  return state;
 }
 
 function errorMessage(state = '', action) {

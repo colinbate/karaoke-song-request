@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import {songListApi} from 'setup'; 
 
 export const ADD_REQUEST = 'ADD_REQUEST';
 export const ADD_REQUESTS = 'ADD_REQUESTS';
@@ -8,6 +9,7 @@ export function addRequest(request) {
   request.key = shortid.generate();
   request.when = new Date();
 	return {
+    promise: songListApi.add(request),
 		request,
 		type: ADD_REQUEST
 	};
