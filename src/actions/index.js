@@ -1,9 +1,12 @@
 import shortid from 'shortid';
-import {songListApi} from 'setup'; 
+import {songListApi} from 'setup';
+import {signin, signout} from '../api/auth';
 
 export const ADD_REQUEST = 'ADD_REQUEST';
 export const ADD_REQUESTS = 'ADD_REQUESTS';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const SET_USER = 'SET_USER';
+export const CLEAR_USER = 'CLEAR_USER';
 
 export function addRequest(request) {
   request.key = shortid.generate();
@@ -26,4 +29,18 @@ export function clearError() {
 	return {
 		type: CLEAR_ERROR
 	};
+}
+
+export function login() {
+  return {
+    promise: signin(),
+    type: SET_USER
+  }
+}
+
+export function logout() {
+  signout();
+  return {
+    type: CLEAR_USER
+  }
 }

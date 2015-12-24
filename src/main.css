@@ -9,3 +9,7 @@ main > .page-content {
 #main-container {
   max-width: 960px;
 }
+
+.error {
+  color: red;
+}

@@ -29,15 +29,32 @@ function errorMessage(state = '', action) {
   return state;
 }
 
+function user(state = {}, action) {
+  switch (action.type) {
+    case Actions.CLEAR_USER:
+      return {};
+    case Actions.SET_USER:
+      if (action.ready) {
+        return {
+          ...action.result
+        };
+      }
+    default:
+      return state;
+  }
+  return state;
+}
+
 const rootReducer = combineReducers({
   requests,
   errorMessage,
+  user,
   form: formReducer.plugin({
     requestForm(state, action) {
       if (action.type === Actions.ADD_REQUEST) {
         return {
           ...state,
-          title: {focus:true},
+          title: {},
           artist: {}
         };
       }

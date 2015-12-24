@@ -11,6 +11,7 @@ export default function configureStore(initialState) {
 {
   requests: [{title, artist}, ...],
   errorMessage: '',
+  user,
   form: {redux-form}
 }
 */

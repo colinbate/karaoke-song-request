@@ -23,9 +23,13 @@ class RequestForm extends Component {
         <form onSubmit={handleSubmit(::this.onSubmit)}>
           <div className="mdl-card__supporting-text">
             <TextInput id="name" label="Your Name" {...name} />
+            {name.touched && name.error && <div className="error">{name.error}</div>}
             <TextInput id="email" label="Your Email" {...email} />
+            {email.touched && email.error && <div className="error">{email.error}</div>}
             <TextInput id="title" label="Song Title" {...title} ref={(ref) => this.titleField = ref} />
+            {title.touched && title.error && <div className="error">{title.error}</div>}
             <TextInput id="artist" label="Song Artist" {...artist} />
+            {artist.touched && artist.error && <div className="error">{artist.error}</div>}
           </div>
           <div className="mdl-card__actions">
             <Button onClick={handleSubmit(::this.onSubmit)}>Submit</Button>
@@ -38,5 +42,13 @@ class RequestForm extends Component {
 
 export default reduxForm({
   form: 'requestForm',
+  validate: vals => {
+    const errors = {};
+    if (!vals.name) { errors.name = 'Required'; }
+    if (!vals.email) { errors.email = 'Required'; }
+    if (!vals.title) { errors.title = 'Required'; }
+    if (!vals.artist) { errors.artist = 'Required'; }
+    return errors;
+  },
   fields
 })(RequestForm);

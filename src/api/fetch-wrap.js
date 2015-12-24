@@ -10,18 +10,30 @@ const checkStatus = (response) => {
 
 const parse = r => r.json();
 
+const getHeaders = (initial = {}) => {
+  let token = sessionStorage.getItem('ksr-auth-token');
+  if (token) {
+    initial['Authorization'] = 'Bearer ' + token;
+  }
+  return initial;
+}
+
 export default class FetchWrap {
   get(url) {
-    return fetch(url).then(checkStatus).then(parse);
+    
+    return fetch(url, {
+      method: 'get',
+      headers: getHeaders()
+    }).then(checkStatus).then(parse);
   }
   
   post(url, data) {
     return fetch(url, {
       method: 'post',
-      headers: {
+      headers: getHeaders({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },
+      }),
       body: JSON.stringify(data)
     }).then(checkStatus).then(parse);
   }
