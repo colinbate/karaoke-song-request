@@ -1,3 +1,5 @@
+import { tokenKey } from './auth';
+
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     return response
@@ -11,7 +13,7 @@ const checkStatus = (response) => {
 const parse = r => r.json();
 
 const getHeaders = (initial = {}) => {
-  let token = sessionStorage.getItem('ksr-auth-token');
+  let token = sessionStorage.getItem(tokenKey);
   if (token) {
     initial['Authorization'] = 'Bearer ' + token;
   }

@@ -9,7 +9,7 @@ const Header = ({ user, loginAction, logoutAction, children }) => (
       <span className="mdl-layout-title">{children}</span>
       <div className="mdl-layout-spacer"></div>
       <div>{user.email ?
-        <div><span>{user.email}</span> <Button accent="true" onClick={logoutAction}>Logout</Button></div> :
+        <div><span>{user.email}</span> <Button accent="true" onClick={logoutAction} title="Logout"><i className="material-icons">power_settings_new</i></Button></div> :
         <Button accent="true" onClick={loginAction}>Login</Button>}
       </div>
     </div>

@@ -9,6 +9,10 @@ function requests(state = [], action) {
         return [...state, action.request];
       }
       break;
+    case Actions.SET_REQUESTS:
+      if (action.ready) {
+        return [...action.result];
+      }
     case Actions.ADD_REQUESTS:
       if (action.ready) {
         return [...state, ...action.result];
@@ -34,7 +38,7 @@ function user(state = {}, action) {
     case Actions.CLEAR_USER:
       return {};
     case Actions.SET_USER:
-      if (action.ready) {
+      if (action.ready && action.result) {
         return {
           ...action.result
         };
