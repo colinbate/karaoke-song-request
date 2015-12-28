@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import RequestForm from '../components/RequestForm';
 import Requests from './Requests';
 import Example from './Example';
+import ErrorHud from './ErrorHud';
 
 export default class App extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class App extends Component {
           <Header>Requested Songs</Header>
           <main className="mdl-layout__content">
             <div className="page-content">
+              <ErrorHud />
               <div className="mdl-grid" id="main-container">
                 <div className="mdl-cell mdl-cell--8-col">
                   <Requests />

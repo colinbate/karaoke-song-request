@@ -50,13 +50,17 @@ export function setUser(email) {
 export function login() {
   return {
     promise: signin(),
+    after: () => refreshRequestList(),
     type: SET_USER
   }
 }
 
 export function logout() {
   signout();
-  return {
-    type: CLEAR_USER
+  return dispatch => {
+    dispatch({
+      type: CLEAR_USER
+    });
+    dispatch(refreshRequestList());
   }
 }

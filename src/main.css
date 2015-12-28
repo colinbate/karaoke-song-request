@@ -2,11 +2,11 @@ main > .page-content {
 	padding: 48px 10px 10px;
 }
 
-.ksr-full-table {
+.ksr-full-table, .form-card {
 	width: 100%;
 }
 
-#main-container {
+#main-container, #error-hud {
   max-width: 960px;
 }
 

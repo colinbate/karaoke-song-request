@@ -14,12 +14,18 @@ const readyStatePromise = store => next => action => {
   function makeAction(ready, data) {
     let newAction = Object.assign({}, action, { ready }, data);
     delete newAction.promise;
+    delete newAction.after;
     return newAction;
   }
 
   next(makeAction(false))
   return action.promise.then(
-    result => next(makeAction(true, { result })),
+    result => {
+      next(makeAction(true, { result }));
+      if (typeof action.after === 'function') {
+        store.dispatch(action.after(result));
+      }
+    },
     error => next(makeAction(true, { error }))
   );
 };

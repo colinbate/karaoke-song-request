@@ -14,7 +14,7 @@ function requests(state = [], action) {
         return [...action.result];
       }
     case Actions.ADD_REQUESTS:
-      if (action.ready) {
+      if (action.ready && action.result) {
         return [...state, ...action.result];
       }
     default:
