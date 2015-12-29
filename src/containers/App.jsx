@@ -6,6 +6,8 @@ import RequestForm from '../components/RequestForm';
 import Requests from './Requests';
 import Example from './Example';
 import ErrorHud from './ErrorHud';
+import RequestControls from './RequestControls';
+import FulFilled from './FulFilled';
 
 export default class App extends Component {
   render() {
@@ -19,6 +21,8 @@ export default class App extends Component {
               <div className="mdl-grid" id="main-container">
                 <div className="mdl-cell mdl-cell--8-col">
                   <Requests />
+                  <RequestControls />
+                  <FulFilled />
                 </div>
                 <div className="mdl-cell mdl-cell--4-col">
                   <RequestForm />

@@ -1,22 +1,22 @@
 import FetchWrap from '../api/fetch-wrap';
 import SongListApi from '../api/song-list';
-import {tokenKey, emailKey} from '../api/auth';
+import {tokenKey, profileKey} from '../api/auth';
+import storage from 'storage';
 import {setUser} from '../actions';
 import JwtHelper from '../utils/JwtHelper';
 
 export const songListApi = new SongListApi(new FetchWrap());
 
 export function checkForExistingUser(store) {
-  const storage = window.sessionStorage;
-  const email = storage.getItem(emailKey);
-  const token = storage.getItem(tokenKey);
-  if (email && token) {
+  const profile = storage.get(profileKey);
+  const token = storage.get(tokenKey);
+  if (profile && token) {
     let helper = new JwtHelper();
     if (helper.isTokenExpired(token)) {
-      storage.removeItem(emailKey);
-      storage.removeItem(tokenKey);
+      storage.remove(profileKey);
+      storage.remove(tokenKey);
     } else {
-      store.dispatch(setUser(email));
+      store.dispatch(setUser(profile));
     }
   }
 }

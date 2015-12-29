@@ -11,28 +11,56 @@ function requests(state = [], action) {
       break;
     case Actions.SET_REQUESTS:
       if (action.ready) {
-        return [...action.result];
+        return [...action.result.requests];
       }
-    case Actions.ADD_REQUESTS:
-      if (action.ready && action.result) {
-        return [...state, ...action.result];
+      break;
+    case Actions.DELETE_SELECTED_REQUESTS:
+    case Actions.FULFILL_SELECTED_REQUESTS:
+      if (action.ready && action.selection.size > 0 && !action.error) {
+        return state.filter(r => !action.selection.has(r.key))
       }
+      break;
     default:
       return state;
   }
   return state;
 }
 
-function selectedRequests(state = new Set(), action) {
+function completed(state = [], action) {
+  switch (action.type) {
+    case Actions.FULFILL_SELECTED_REQUESTS:
+      if (action.ready && action.selection.size > 0 && !action.error) {
+        return [...state, ...action.selection.values()];
+      }
+      break;
+    case Actions.SET_REQUESTS:
+      if (action.ready) {
+        return [...action.result.fulfilled];
+      }
+  }
+  return state;
+}
+
+function selectedRequests(state = new Map(), action) {
   switch (action.type) {
     case Actions.SELECT_REQUEST:
-      return (new Set(state)).add(action.id);
+      return (new Map(state)).set(action.request.key, action.request);
     case Actions.UNSELECT_REQUEST:
       {
-        let newstate = new Set(state);
-        newstate.delete(action.id);
+        let newstate = new Map(state);
+        newstate.delete(action.request.key);
         return newstate;
       }
+    case Actions.SELECT_ALL_REQUESTS:
+      return new Map(action.requests.map(r => [r.key, r]));
+    case Actions.UNSELECT_ALL_REQUESTS:
+      return new Map();
+    case Actions.DELETE_SELECTED_REQUESTS:
+    case Actions.FULFILL_SELECTED_REQUESTS:
+      if (action.ready && !action.error) {
+        return new Map();
+      }
+      break;
   }
   return state;
 }
@@ -65,6 +93,7 @@ function user(state = {}, action) {
 
 const rootReducer = combineReducers({
   requests,
+  completed,
   selectedRequests,
   errorMessage,
   user,

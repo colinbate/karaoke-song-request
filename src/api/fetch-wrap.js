@@ -1,4 +1,5 @@
 import { tokenKey } from './auth';
+import storage from 'storage';
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
@@ -13,7 +14,7 @@ const checkStatus = (response) => {
 const parse = r => r.json();
 
 const getHeaders = (initial = {}) => {
-  let token = sessionStorage.getItem(tokenKey);
+  let token = storage.get(tokenKey);
   if (token) {
     initial['Authorization'] = 'Bearer ' + token;
   }

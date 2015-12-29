@@ -13,3 +13,29 @@ main > .page-content {
 .error {
   color: red;
 }
+
+.control-bar {
+  margin-top: 1em;
+}
+
+.danger-button {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.danger-button:hover {
+  background-color: #b71c1c;
+}
+
+.mdl-data-table .mdl-data-table__cell--icon {
+  text-align: center;
+  width: 5px;
+}
+
+.mdl-data-table .mdl-data-table__cell--icon .mdl-checkbox.is-upgraded {
+  padding-left: 16px;
+}
+
+.space-right {
+  margin-right: 1em;
+}

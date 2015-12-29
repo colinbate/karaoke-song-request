@@ -1,4 +1,4 @@
-import {urlGetSongs, urlAddSong, urlRemoveSongs} from '../config';
+import {urlGetSongs, urlAddSong, urlRemoveSongs, urlFulfillSongs} from '../config';
 
 export default class SongListApi {
   constructor(fetch) {
@@ -6,7 +6,12 @@ export default class SongListApi {
   }
   
   get() {
-    return this.fetch.get(urlGetSongs).then(p => p.list.map(v => v[1]));
+    return this.fetch.get(urlGetSongs).then(p => {
+      return {
+        requests: p.list.map(v => v[1]),
+        fulfilled: p.fulfilled && p.fulfilled.map(v => v[1]) || []
+      };
+    });
   }
   
   add(request) {
@@ -15,5 +20,9 @@ export default class SongListApi {
   
   remove(...ids) {
     return this.fetch.post(urlRemoveSongs, {payload: ids});
+  }
+  
+  fulfill(...ids) {
+    return this.fetch.post(urlFulfillSongs, {payload: ids});
   }
 }

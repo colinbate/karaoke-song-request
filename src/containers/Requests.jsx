@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import SongList from '../components/SongList';
-import {toggleRequest} from '../actions';
+import {toggleRequest, toggleAllRequests} from '../actions';
 
 function mapStateToProps(state) {
   return {
@@ -10,4 +10,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {toggleRequest})(SongList);
+export default connect(mapStateToProps, {toggleRequest, toggleAllRequests})(SongList);

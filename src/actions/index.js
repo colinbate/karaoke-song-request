@@ -3,9 +3,10 @@ import {songListApi} from 'setup';
 import {signin, signout} from '../api/auth';
 
 export const ADD_REQUEST = 'ADD_REQUEST';
-export const ADD_REQUESTS = 'ADD_REQUESTS';
 export const SET_REQUESTS = 'SET_REQUESTS';
+
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+
 export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
 
@@ -14,8 +15,7 @@ export const UNSELECT_REQUEST = 'UNSELECT_REQUEST';
 export const SELECT_ALL_REQUESTS = 'SELECT_ALL_REQUESTS';
 export const UNSELECT_ALL_REQUESTS = 'UNSELECT_ALL_REQUESTS';
 export const DELETE_SELECTED_REQUESTS = 'DELETE_SELECTED_REQUESTS';
-
-export const FULFILL_REQUEST = 'FULFILL_REQUEST';
+export const FULFILL_SELECTED_REQUESTS = 'FULFILL_SELECTED_REQUESTS';
 
 export function addRequest(request) {
   request.key = shortid.generate();
@@ -24,13 +24,6 @@ export function addRequest(request) {
     promise: songListApi.add(request),
 		request,
 		type: ADD_REQUEST
-	};
-}
-
-export function fetchRequests(api) {
-	return {
-		promise: api.get(),
-		type: ADD_REQUESTS
 	};
 }
 
@@ -47,9 +40,9 @@ export function clearError() {
 	};
 }
 
-export function setUser(email) {
+export function setUser(user) {
   return {
-    result: {email},
+    result: user,
     ready: true,
     type: SET_USER
   };
@@ -73,23 +66,59 @@ export function logout() {
   }
 }
 
-export function selectRequest(id) {
+export function selectRequest(request) {
   return {
-    id,
+    request,
     type: SELECT_REQUEST
   };
 }
 
-export function unselectRequest(id) {
+export function unselectRequest(request) {
   return {
-    id,
+    request,
     type: UNSELECT_REQUEST
   };
 }
 
-export function toggleRequest(event, id) {
+export function selectAllRequests(requests) {
+  return {
+    requests,
+    type: SELECT_ALL_REQUESTS
+  };
+}
+
+export function unselectAllRequests() {
+  return {
+    type: UNSELECT_ALL_REQUESTS
+  };
+}
+
+export function toggleRequest(event, request) {
   if (event.target.checked) {
-    return selectRequest(id);
+    return selectRequest(request);
   }
-  return unselectRequest(id);
+  return unselectRequest(request);
+}
+
+export function toggleAllRequests(event, requests) {
+  if (event.target.checked) {
+    return selectAllRequests(requests);
+  }
+  return unselectAllRequests();
+}
+
+export function deleteSelectedRequests(selection) {
+  return {
+    promise: songListApi.remove(...selection.keys()),
+    selection,
+    type: DELETE_SELECTED_REQUESTS
+  };
+}
+
+export function fulfillSelectedRequests(selection) {
+  return {
+    promise: songListApi.fulfill(...selection.keys()),
+    selection,
+    type: FULFILL_SELECTED_REQUESTS
+  };
 }

@@ -3,12 +3,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import Root from './containers/Root';
 import configureStore from './store';
-import {songListApi, checkForExistingUser} from 'setup';
-import {fetchRequests} from './actions';
+import {checkForExistingUser} from 'setup';
+import {refreshRequestList} from './actions';
 
 const store = configureStore();
 checkForExistingUser(store);
-store.dispatch(fetchRequests(songListApi));
+store.dispatch(refreshRequestList());
 
 render(
   <Root store={store} />,
