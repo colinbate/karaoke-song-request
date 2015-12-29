@@ -13,8 +13,7 @@ class RequestForm extends Component {
   render() {
     let {fields: {title, artist, name, email},
       handleSubmit,
-      resetForm,
-      submitting} = this.props;
+      resetForm} = this.props;
     return (
       <div className="mdl-card mdl-shadow--2dp form-card">
         <div className="mdl-card__title mdl-color--accent mdl-color-text--accent-contrast">
@@ -33,6 +32,7 @@ class RequestForm extends Component {
           </div>
           <div className="mdl-card__actions">
             <Button onClick={handleSubmit(::this.onSubmit)}>Submit</Button>
+            <Button onClick={resetForm}>Reset</Button>
           </div>
         </form>
       </div>

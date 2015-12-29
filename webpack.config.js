@@ -1,9 +1,10 @@
 var webpack = require('webpack');
 
 module.exports = {
+  context: __dirname,
 	entry: './src/main.js',
 	output: {
-		path: './src/',
+		path: './dist/',
 		filename: 'index.js'
 	},
 	devServer: {

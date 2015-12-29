@@ -8,7 +8,6 @@ import Example from './Example';
 import ErrorHud from './ErrorHud';
 import RequestControls from './RequestControls';
 import FulFilled from './FulFilled';
-import FulfilledControls from './FulfilledControls';
 
 export default class App extends Component {
   render() {
