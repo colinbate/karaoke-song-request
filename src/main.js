@@ -10,7 +10,6 @@ const store = configureStore();
 checkForExistingUser(store);
 store.dispatch(fetchRequests(songListApi));
 
-
 render(
   <Root store={store} />,
   document.getElementById('app')

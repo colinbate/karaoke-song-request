@@ -9,6 +9,14 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
 
+export const SELECT_REQUEST = 'SELECT_REQUEST';
+export const UNSELECT_REQUEST = 'UNSELECT_REQUEST';
+export const SELECT_ALL_REQUESTS = 'SELECT_ALL_REQUESTS';
+export const UNSELECT_ALL_REQUESTS = 'UNSELECT_ALL_REQUESTS';
+export const DELETE_SELECTED_REQUESTS = 'DELETE_SELECTED_REQUESTS';
+
+export const FULFILL_REQUEST = 'FULFILL_REQUEST';
+
 export function addRequest(request) {
   request.key = shortid.generate();
   request.when = new Date();
@@ -63,4 +71,25 @@ export function logout() {
     });
     dispatch(refreshRequestList());
   }
+}
+
+export function selectRequest(id) {
+  return {
+    id,
+    type: SELECT_REQUEST
+  };
+}
+
+export function unselectRequest(id) {
+  return {
+    id,
+    type: UNSELECT_REQUEST
+  };
+}
+
+export function toggleRequest(event, id) {
+  if (event.target.checked) {
+    return selectRequest(id);
+  }
+  return unselectRequest(id);
 }

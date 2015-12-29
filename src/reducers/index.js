@@ -23,6 +23,20 @@ function requests(state = [], action) {
   return state;
 }
 
+function selectedRequests(state = new Set(), action) {
+  switch (action.type) {
+    case Actions.SELECT_REQUEST:
+      return (new Set(state)).add(action.id);
+    case Actions.UNSELECT_REQUEST:
+      {
+        let newstate = new Set(state);
+        newstate.delete(action.id);
+        return newstate;
+      }
+  }
+  return state;
+}
+
 function errorMessage(state = '', action) {
   if (action.type === Actions.CLEAR_ERROR) {
     return '';
@@ -51,6 +65,7 @@ function user(state = {}, action) {
 
 const rootReducer = combineReducers({
   requests,
+  selectedRequests,
   errorMessage,
   user,
   form: formReducer.plugin({
