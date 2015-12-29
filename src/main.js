@@ -7,8 +7,9 @@ import {songListApi, checkForExistingUser} from 'setup';
 import {fetchRequests} from './actions';
 
 const store = configureStore();
-store.dispatch(fetchRequests(songListApi));
 checkForExistingUser(store);
+store.dispatch(fetchRequests(songListApi));
+
 
 render(
   <Root store={store} />,
