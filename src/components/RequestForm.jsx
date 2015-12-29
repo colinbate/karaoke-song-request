@@ -51,4 +51,10 @@ export default reduxForm({
     return errors;
   },
   fields
-})(RequestForm);
+},
+state => ({
+  initialValues: {
+    name: state.user.user_metadata && state.user.user_metadata.nickname || state.user.nickname,
+    email: state.user.email
+  }
+}))(RequestForm);

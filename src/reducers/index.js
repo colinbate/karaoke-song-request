@@ -20,6 +20,10 @@ function requests(state = [], action) {
         return state.filter(r => !action.selection.has(r.key))
       }
       break;
+    case Actions.PURGE_EVERYTHING:
+      if (action.ready && !action.error) {
+        return [];
+      }
     default:
       return state;
   }
@@ -36,6 +40,12 @@ function completed(state = [], action) {
     case Actions.SET_REQUESTS:
       if (action.ready) {
         return [...action.result.fulfilled];
+      }
+      break;
+    case Actions.ARCHIVE_FULFILLED:
+    case Actions.PURGE_EVERYTHING:
+      if (action.ready && !action.error) {
+        return [];
       }
   }
   return state;
