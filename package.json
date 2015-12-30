@@ -1,6 +1,6 @@
 {
   "name": "karaoke-song-request",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Allows people to request songs in advance of a karaoke performance to ensure the KJ has it available.",
   "main": "index.js",
   "scripts": {
