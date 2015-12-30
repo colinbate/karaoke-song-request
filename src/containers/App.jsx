@@ -1,10 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import Chrome from '../components/Chrome';
 import Header from '../components/Header';
 import RequestForm from '../components/RequestForm';
 import Requests from './Requests';
-import Example from './Example';
 import ErrorHud from './ErrorHud';
 import RequestControls from './RequestControls';
 import FulFilled from './FulFilled';

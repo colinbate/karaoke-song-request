@@ -27,12 +27,12 @@ module.exports = {
 					plugins: ['transform-object-rest-spread', 'transform-function-bind']
 				}
 			}
-		],
-    plugins: [
-      new webpack.ProvidePlugin({
-        'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-        'lock': 'imports?this=>window'
-      })
-    ]
-	}
+		]
+	},
+  plugins: [
+    new webpack.ProvidePlugin({
+      'Promise': 'es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
+  ]
 };
